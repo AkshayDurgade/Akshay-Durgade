@@ -1,0 +1,15 @@
+pipelineJob('ProjectA/A1/PipelineJob-A1') {
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/AkshayDurgade/Jenkins-Pipeline.git')
+                    }
+                    branch('main')
+                }
+                scriptPath('Jenkinsfile')
+            }
+        }
+    }
+}
