@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-a2
+  labels:
+    component: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: web
+  template:
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers: 
+        - name: a1
+          image: akshaysdurgade/dockerpod
+          ports:
+            - containerPort: 3000
