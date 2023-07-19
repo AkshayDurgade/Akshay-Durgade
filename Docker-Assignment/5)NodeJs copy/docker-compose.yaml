@@ -1,0 +1,31 @@
+version: '3'
+services:
+  
+  mysql:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=Akshay
+      - MYSQL_DATABASE=office
+    volumes:
+      - ../mysql-data:/var/lib/mysql
+
+  nodejs-app:
+    restart: on-failure
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=Akshay
+      - MYSQL_DATABASE=office
+    depends_on:
+      - mysql
+    volumes:
+      - ../app:/app
+
+volumes:
+  mysql-data:
+  app:
