@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql-deploy
+  name: mysql-deployment
 spec:
   replicas: 1
   selector:
@@ -21,9 +21,9 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: mysql-root-password
-          volumeMounts: 
+          volumeMounts:
             - name: mysql-persistent-storage
-              mountPath: D:\Kubernetes-PV\pv
+              mountPath: /var/lib/mysql
           ports:
             - containerPort: 3306
       volumes:

@@ -1,0 +1,6 @@
+Terraform1/.terraform
+Terraform1/.terraform.*
+Terraform1/terraform.tfvars
+Docker-Assignment/*/node_modules
+Docker-Assignment/*/mysql-data
+Docker-Assignment/mysql-data
