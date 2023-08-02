@@ -23,8 +23,11 @@ resource "aws_vpc" "terraform-vpc" {
 module "myapp-subnet" {
   source = "./modules/subnet"
   vpc_id = aws_vpc.terraform-vpc.id
-  subnet_cidr_block = var.subnet_cidr_block
   availability_zone = var.availability_zone
+  availability_zone_1 = var.availability_zone_1
+  availability_zones = var.availability_zones
+  public_subnet_cidrs = var.public_subnet_cidrs
+  private_subnet_cidrs = var.private_subnet_cidrs
   env_prefix = var.env_prefix
 }
 
@@ -39,6 +42,12 @@ module "myapp-rtb" {
   env_prefix = var.env_prefix
   igw_id = module.myapp-igw.igw_id
   vpc_id = aws_vpc.terraform-vpc.id
+  subnet_id_arr_public=module.myapp-subnet.public_subnet_ids
+  subnet_id_arr_private=module.myapp-subnet.private_subnet_ids
+}
+
+module "sg" {
+  source = "./modules/sg"
 }
 
 
